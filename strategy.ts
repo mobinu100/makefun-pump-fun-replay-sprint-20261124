@@ -36,16 +36,16 @@ const PRICE_SCALE = 1_000_000_000_000n;
 
 // ---- entry signal (rolling window over the tape) -------------------------
 const WINDOW_SLOTS = 40; // lookback for the momentum window, in slots
-const MIN_NET_LAMPORTS = 500_000_000n; // >= 0.5 SOL net inflow over the window
-const MIN_BUYS = 3; // buy trades in the window
-const MIN_BUYERS = 4; // distinct buying wallets in the window
-const MIN_UP_PERMILLE = 50; // price up at least 5% over the window
-const MAX_UP_PERMILLE = 1200; // ...but not more than 120% (already vertical)
+const MIN_NET_LAMPORTS = 1_000_000_000n; // >= 1 SOL net inflow over the window
+const MIN_BUYS = 4; // buy trades in the window
+const MIN_BUYERS = 5; // distinct buying wallets in the window
+const MIN_UP_PERMILLE = 80; // price up at least 8% over the window
+const MAX_UP_PERMILLE = 1000; // ...but not more than 100% (already vertical)
 const NEAR_HIGH_PERMILLE = 900; // price now at least 90% of the window high
 const MAX_BUYER_SHARE_PERMILLE = 600; // biggest single buyer at most 60% of buys
 const MIN_AGE_SLOTS = 20; // ignore the very first slots (bundled launches)
 const MAX_AGE_SLOTS = 60000; // ...and coins older than ~6.7h of slots
-const MIN_REAL_SOL = 1_000_000_000n; // curve must hold >= 1 SOL real at entry
+const MIN_REAL_SOL = 2_000_000_000n; // curve must hold >= 2 SOL real at entry
 
 // ---- sizing ---------------------------------------------------------------
 const STAKE_LAMPORTS = 40_000_000n; // 0.04 SOL total per coin, at most
@@ -56,13 +56,13 @@ const MAX_MAIN_POSITIONS = 4; // leave one of the 5 slots for probes
 const MAX_ENTRIES_PER_MINT = 2; // at most two separate entries per coin
 
 // ---- exits ----------------------------------------------------------------
-const TAKE_PROFIT_PERMILLE = 1600; // sell all at +60% over cost
-const STOP_LOSS_PERMILLE = 800; // sell all at -20% under cost
-const TRAIL_ARM_PERMILLE = 1300; // trailing stop arms once up 30%
-const TRAIL_DROP_PERMILLE = 200; // ...then exit on a 20% fall from the peak
-const MAX_HOLD_SLOTS = 7200; // exit after ~48 min held...
-const HOLD_IF_UP_PERMILLE = 1200; // ...unless still up at least 20%
-const FADE_NET_LAMPORTS = -300_000_000n; // exit when window net flow < -0.3 SOL
+const TAKE_PROFIT_PERMILLE = 1350; // sell all at +35% over cost
+const STOP_LOSS_PERMILLE = 880; // sell all at -12% under cost
+const TRAIL_ARM_PERMILLE = 1200; // trailing stop arms once up 20%
+const TRAIL_DROP_PERMILLE = 120; // ...then exit on a 12% fall from the peak
+const MAX_HOLD_SLOTS = 3600; // exit after ~24 min held...
+const HOLD_IF_UP_PERMILLE = 1150; // ...unless still up at least 15%
+const FADE_NET_LAMPORTS = -200_000_000n; // exit when window net flow < -0.2 SOL
 const BIG_SELL_LAMPORTS = 1_000_000_000n; // exit on any single sell >= 1 SOL
 const STALE_SLOTS = 1200; // exit when no trade for this many slots
 const COOLDOWN_SLOTS = 600; // wait this long after an exit before re-entry
